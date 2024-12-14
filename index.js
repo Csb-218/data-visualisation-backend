@@ -39,7 +39,7 @@ let db;
       SUM(E) AS F
       FROM peoplestats`;
       const resp = await db.all(query, []);
-      res.status(200).json(resp);
+      res.status(200).json(resp[0]);
     } catch (error) {
       res
         .status(500)

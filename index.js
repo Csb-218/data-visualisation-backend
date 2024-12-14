@@ -39,7 +39,18 @@ let db;
       SUM(E) AS F
       FROM peoplestats`;
       const resp = await db.all(query, []);
-      res.status(200).json(resp[0]);
+      console.log(resp)
+      const timeSpent_per_feature = []
+
+      for(const [feature,time_spent] of Object.entries(resp[0])){
+           const obj = {
+              feature : feature ,
+              time_spent : time_spent
+          }
+
+          timeSpent_per_feature.push(obj)
+      }
+      res.status(200).json(timeSpent_per_feature);
     } catch (error) {
       res
         .status(500)
